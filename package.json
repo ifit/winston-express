@@ -1,0 +1,10 @@
+{
+  "name": "winston-express",
+  "description": "Express middleware to let you use winston from the browser.",
+  "author": "Adam Blackburn <adam@ifit.com>",
+  "version": "0.0.1",
+  "main": "index.js",
+  "keywords": ["winston", "logging", "client-log"],
+  "repository": "git://github.com/ifit/winston-express.git",
+  "homepage": "https://github.com/ifit/winston-express"
+}
