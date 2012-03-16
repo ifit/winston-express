@@ -19,9 +19,9 @@ winstonExpress(app, winston);
 Only call `winstonExpress()` once, or bad things could happen
 
 Add the following script tag to your html:
-```html
-<script type="text/javascript" src="/winston/client.js"></script>
-```
+
+    <script type="text/javascript" src="/winston/client.js"></script>
+
 Winston Express requires jQuery to be included before itself in the
 browser.
 
