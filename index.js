@@ -1,18 +1,18 @@
 var fs = require('fs')
+  , uglify = require('uglify-js')
   , jsClient
   , winston;
 
-try {
-  jsClient = fs.readFileSync(__dirname + '/client.min.js', 'utf8');
-} catch (e) {
-  jsClient = fs.readFileSync(__dirname + '/client.js', 'utf8');
-}
+jsClient = fs.readFileSync(__dirname + '/client.js', 'utf8');
+jsClient = minifyJs(jsClient);
 
-function helpExpress(app, _winston) {
-  winston = _winston;
-  jsClient = jsClient.replace('{LEVELS:LEVELS}', JSON.stringify(winston.levels));
-  app.get('/winston/client.js', getClient);
-  app.get('/winston/log/:level/:message/:meta?', logMessage);
+function minifyJs(script) {
+  var ast;
+  ast = uglify.parser.parse(script);
+  ast = uglify.uglify.ast_mangle(ast);
+  ast = uglify.uglify.ast_squeeze(ast);
+  script = uglify.uglify.gen_code(ast, { ascii_only: true });
+  return script;
 }
 
 function getClient(req, res) {
@@ -26,6 +26,13 @@ function logMessage(req, res) {
              : undefined );
   winston.log(req.params.level, req.params.message, meta);
   res.json({got: 'it'});
+}
+
+function helpExpress(app, _winston) {
+  winston = _winston;
+  jsClient = jsClient.replace('{LEVELS:LEVELS}', JSON.stringify(winston.levels));
+  app.get('/winston/client.js', getClient);
+  app.get('/winston/log/:level/:message/:meta?', logMessage);
 }
 
 module.exports = helpExpress;

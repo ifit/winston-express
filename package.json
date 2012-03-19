@@ -5,6 +5,9 @@
   "version": "0.0.1",
   "main": "index.js",
   "keywords": ["winston", "logging", "client-log"],
+  "dependencies": {
+    "uglify-js": "*"
+  },
   "repository": "git://github.com/ifit/winston-express.git",
   "homepage": "https://github.com/ifit/winston-express"
 }
