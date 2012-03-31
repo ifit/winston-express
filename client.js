@@ -32,12 +32,10 @@
     }
   }
 
-  if (window.onerror) {
-    window.onerror = function(msg, url, code) {
-      var error = msg + " in " + url + " with code " + code;
-      winston.error(error);
-    };
-  }
+  window.onerror = function(msg, url, code) {
+    var error = msg + " in " + url + " with code " + code;
+    winston.error(error);
+  };
 
   window.winston = Winston;
 
