@@ -1,8 +1,16 @@
-(function(window, $) {
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // Register as an AMD module if available...
+        define(['jquery'], factory);
+    } else {
+        // Browser globals for the unenlightened...
+        factory($);
+    }
+}(function($){
   "use strict";
 
   var levels = {LEVELS:LEVELS};
-  var console = window.console;
+  var console = console;
   var Winston = new Function();
 
   Winston.log = function(level, message, meta) {
@@ -32,11 +40,16 @@
     }
   }
 
-  window.onerror = function(msg, url, code) {
-    var error = msg + " in " + url + " with code " + code;
-    winston.error(error);
-  };
+  if (typeof define === 'function' && define.amd) {
+    // Register as an AMD module if available...
+    return Winston
+  } else {
+    window.onerror = function(msg, url, code) {
+      var error = msg + " in " + url + " with code " + code;
+      winston.error(error);
+    };
 
-  window.winston = Winston;
+    window.winston = Winston;
+  }
 
-})(window, jQuery);
+}));
