@@ -8,10 +8,10 @@ jsClient = minifyJs(jsClient);
 
 function minifyJs(script) {
   var ast;
-  ast = uglify.parser.parse(script);
-  ast = uglify.uglify.ast_mangle(ast);
-  ast = uglify.uglify.ast_squeeze(ast);
-  script = uglify.uglify.gen_code(ast, { ascii_only: true });
+  ast = uglify.parse(script);
+  ast = uglify.ast_mangle(ast);
+  ast = uglify.ast_squeeze(ast);
+  script = uglify.gen_code(ast, { ascii_only: true });
   return script;
 }
 
