@@ -1,5 +1,6 @@
 var fs = require('fs')
-  , uglify = require('uglify-js')
+  , jsp = require("uglify-js").parser
+  , pro = require("uglify-js").uglify
   , jsClient
   , winston;
 
@@ -8,10 +9,10 @@ jsClient = minifyJs(jsClient);
 
 function minifyJs(script) {
   var ast;
-  ast = uglify.parse(script);
-  ast = uglify.ast_mangle(ast);
-  ast = uglify.ast_squeeze(ast);
-  script = uglify.gen_code(ast, { ascii_only: true });
+  ast = jsp.parse(script);
+  ast = pro.ast_mangle(ast);
+  ast = pro.ast_squeeze(ast);
+  script = pro.gen_code(ast, { ascii_only: true });
   return script;
 }
 
