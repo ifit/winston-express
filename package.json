@@ -5,6 +5,9 @@
   "version": "0.0.1",
   "main": "index.js",
   "keywords": ["winston", "logging", "client-log"],
+  "contributors": {
+    "name": "Kersten Burkhardt <burkhardt@mhp-net.de>"
+  },
   "dependencies": {
     "uglify-js": "1.3.4"
   },
