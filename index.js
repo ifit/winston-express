@@ -1,24 +1,10 @@
 var fs = require('fs')
   , uglify = require('uglify-js')
-  , compressor = uglify.Compressor({})
   , jsClient
   , winston
   ;
 
-jsClient = fs.readFileSync(__dirname + '/client.js', 'utf8');
-jsClient = minifyJs(jsClient);
-
-function minifyJs(script) {
-  var ast = uglify.parse(script);
-  ast.figure_out_scope();
-  ast = ast.transform(compressor);
-  ast.figure_out_scope();
-  ast.compute_char_frequency();
-  ast.mangle_names();
-  var stream = uglify.OutputStream({});
-  ast.print(stream);
-  return stream.toString();
-}
+jsClient = uglify.minify(__dirname + '/client.js').code;
 
 function getClient(req, res) {
   res.header('Content-Type', 'application/javascript');
