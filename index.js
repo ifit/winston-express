@@ -1,19 +1,23 @@
 var fs = require('fs')
-  , jsp = require("uglify-js").parser
-  , pro = require("uglify-js").uglify
+  , uglify = require('uglify-js')
+  , compressor = uglify.Compressor({})
   , jsClient
-  , winston;
+  , winston
+  ;
 
 jsClient = fs.readFileSync(__dirname + '/client.js', 'utf8');
 jsClient = minifyJs(jsClient);
 
 function minifyJs(script) {
-  var ast;
-  ast = jsp.parse(script);
-  ast = pro.ast_mangle(ast);
-  ast = pro.ast_squeeze(ast);
-  script = pro.gen_code(ast, { ascii_only: true });
-  return script;
+  var ast = uglify.parse(script);
+  ast.figure_out_scope();
+  ast = ast.transform(compressor);
+  ast.figure_out_scope();
+  ast.compute_char_frequency();
+  ast.mangle_names();
+  var stream = uglify.OutputStream({});
+  ast.print(stream);
+  return stream.toString();
 }
 
 function getClient(req, res) {
