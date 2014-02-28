@@ -28,7 +28,7 @@ function getClient(req, res) {
 function logMessage(req, res) {
   var meta = ( req.params.meta
              ? JSON.parse(req.params.meta)
-             : undefined );
+             : '' );
   winston.log(req.params.level, req.params.message, meta);
   res.json({got: 'it'});
 }
