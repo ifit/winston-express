@@ -1,10 +1,7 @@
-var fs = require('fs')
-  , uglify = require('uglify-js')
-  , jsClient
+var uglify = require('uglify-js')
+  , jsClient = uglify.minify(__dirname + '/client.js').code
   , winston
   ;
-
-jsClient = uglify.minify(__dirname + '/client.js').code;
 
 function getClient(req, res) {
   res.header('Content-Type', 'application/javascript');
