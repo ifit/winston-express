@@ -14,7 +14,12 @@
   var Winston = new Function();
 
   Winston.log = function(level, message, meta) {
-    var url = '/winston/log/' + encodeURIComponent(level) +
+    var path;
+
+    path = window.location.pathname;
+    if (path.slice(-1) == "/") path = path.slice(0,-1);
+
+    var url = path + '/winston/log/' + encodeURIComponent(level) +
               '/' + encodeURIComponent(message);
     if (meta) {
       url += '/' + encodeURIComponent(JSON.stringify(meta));
