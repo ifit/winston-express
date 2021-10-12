@@ -9,11 +9,20 @@ function getClient(req, res) {
 }
 
 function logMessage(req, res) {
-  var meta = ( req.params.meta
-             ? JSON.parse(req.params.meta)
-             : '' );
+  let meta = parseMetadataSafely(req.params.meta);
   winston.log(req.params.level, req.params.message, meta);
   res.json({got: 'it'});
+}
+
+function parseMetadataSafely(meta) {
+  let parsedMeta = '';
+  if(!meta) return parsedMeta;
+  try {
+    parsedMeta = JSON.parse(meta);
+  } catch(error) {
+    parsedMeta = meta.toString();
+  } 
+  return parsedMeta;
 }
 
 function helpExpress(app, _winston) {
