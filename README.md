@@ -46,4 +46,4 @@ npm publish
 The `npm version patch` command will update the patch version number in the package.json file.
 The `npm publish` command will publish the new version to npmjs.com
 
-Note: Previously, this package was not under ifit npm organization and new version were being published here https://npmjs.com/winston-express. The package has now been relocated to https://npmjs.com/@ifit/winston-express, and new versions will only be publish to the latter URL.
+**Note:** Previously, this package was not under the ifit npm organization and older versions of the package were published here https://npmjs.com/winston-express. The package has now been relocated to the ifit organization at https://npmjs.com/@ifit/winston-express and new versions will only be published there.
