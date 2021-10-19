@@ -1,5 +1,5 @@
 
-### Winston Express
+# Winston Express
 
 Winston Express is a helper for express, that allows you to log to
 winston from the browser. 
@@ -35,3 +35,15 @@ winston.myCustomLevel('winston is aware of error levels you define');
 winston.anotherCustomLevel('but only if you define them before calling winstonExpress()');
 winston.log('debug', 'meta data is also allowed', {this: 'is', meta: 'data'});
 ```
+
+### Updating the package version
+
+To update the package version and publishing the new version to npmjs.com use:
+```
+npm version patch
+npm publish
+```
+The `npm version patch` command will update the patch version number in the package.json file.
+The `npm publish` command will publish the new version to npmjs.com
+
+Note: Previously, this package was not under ifit npm organization and new version were being published here https://npmjs.com/winston-express. The package has now been relocated to https://npmjs.com/@ifit/winston-express, and new versions will only be publish to the latter URL.
