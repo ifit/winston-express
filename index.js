@@ -1,5 +1,6 @@
 var uglify = require('uglify-js')
-  , jsClient = uglify.minify(__dirname + '/client.js').code
+  , clientCode = require('fs').readFileSync(__dirname + '/client.js').toString()
+  , jsClient = uglify.minify(clientCode).code
   , winston
   ;
 
@@ -21,7 +22,7 @@ function parseMetadataSafely(meta) {
     parsedMeta = JSON.parse(meta);
   } catch(error) {
     parsedMeta = meta.toString();
-  } 
+  }
   return parsedMeta;
 }
 
