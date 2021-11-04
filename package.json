@@ -2,7 +2,7 @@
   "name": "@ifit/winston-express",
   "description": "Express middleware to let you use winston from the browser.",
   "author": "Adam Blackburn <adam@ifit.com>",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "index.js",
   "keywords": [
     "winston",
