@@ -4,12 +4,16 @@
   "author": "Adam Blackburn <adam@ifit.com>",
   "version": "0.1.2",
   "main": "index.js",
-  "keywords": ["winston", "logging", "client-log"],
+  "keywords": [
+    "winston",
+    "logging",
+    "client-log"
+  ],
   "contributors": {
     "name": "Kersten Burkhardt <burkhardt@mhp-net.de>"
   },
   "dependencies": {
-    "uglify-js": "~2.x"
+    "uglify-js": "^3.14.3"
   },
   "repository": "git://github.com/ifit/winston-express.git",
   "homepage": "https://github.com/ifit/winston-express"
